@@ -6,7 +6,7 @@ window.state('zoomed')
 window['bg'] = "#72F011"
 window.title("MetaCodeNuar For Noobs")
 
-# POINT PLAYERS AND SIZE ON LiNES 11, 12
+# POINT PLAYERS AND SIZE ON LINES 11, 12
 ########################################
 players = 4
 size = 5
