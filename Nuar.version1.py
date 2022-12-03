@@ -1,10 +1,10 @@
 import time
 import copy
 import tkinter as tk
-win = tk.Tk()
-win.geometry(f"2100x2100")
-win['bg'] = "#72F011"
-win.title("MetaCodeNuar For Noobs")
+window = tk.Tk()
+window.state('zoomed')
+window['bg'] = "#72F011"
+window.title("MetaCodeNuar For Noobs")
 
 # POINT PLAYERS AND SIZE ON LiNES 11, 12
 ########################################
@@ -493,28 +493,28 @@ Counts = []
 # POINT PLAYERS AND SIZE ON LiNES 11, 12
 # NEXT FUNCTIONS FOR BEGINING GAME:
 
-win.grid_columnconfigure(0, minsize=60)
-win.grid_columnconfigure(1, minsize=60)
-win.grid_columnconfigure(2, minsize=60)
-win.grid_columnconfigure(3, minsize=60)
-win.grid_columnconfigure(4, minsize=60)
-win.grid_columnconfigure(5, minsize=60)
-win.grid_columnconfigure(6, minsize=60)
-win.grid_columnconfigure(7, minsize=60)
-win.grid_columnconfigure(8, minsize=60)
-win.grid_columnconfigure(9, minsize=60)
-win.grid_columnconfigure(10, minsize=60)
+window.grid_columnconfigure(0, minsize=60)
+window.grid_columnconfigure(1, minsize=60)
+window.grid_columnconfigure(2, minsize=60)
+window.grid_columnconfigure(3, minsize=60)
+window.grid_columnconfigure(4, minsize=60)
+window.grid_columnconfigure(5, minsize=60)
+window.grid_columnconfigure(6, minsize=60)
+window.grid_columnconfigure(7, minsize=60)
+window.grid_columnconfigure(8, minsize=60)
+window.grid_columnconfigure(9, minsize=60)
+window.grid_columnconfigure(10, minsize=60)
 
-win.grid_rowconfigure(1, minsize=70)
-win.grid_rowconfigure(2, minsize=70)
-win.grid_rowconfigure(3, minsize=70)
-win.grid_rowconfigure(4, minsize=70)
-win.grid_rowconfigure(5, minsize=70)
-win.grid_rowconfigure(6, minsize=70)
-win.grid_rowconfigure(7, minsize=70)
-win.grid_rowconfigure(8, minsize=70)
-win.grid_rowconfigure(9, minsize=70)
-win.grid_rowconfigure(10, minsize=70)
+window.grid_rowconfigure(1, minsize=70)
+window.grid_rowconfigure(2, minsize=70)
+window.grid_rowconfigure(3, minsize=70)
+window.grid_rowconfigure(4, minsize=70)
+window.grid_rowconfigure(5, minsize=70)
+window.grid_rowconfigure(6, minsize=70)
+window.grid_rowconfigure(7, minsize=70)
+window.grid_rowconfigure(8, minsize=70)
+window.grid_rowconfigure(9, minsize=70)
+window.grid_rowconfigure(10, minsize=70)
 Show_emty_pole(Pole)
 
 
@@ -587,4 +587,4 @@ def begin():
     Show(Pole)
 
     
-win.mainloop()
+window.mainloop()
