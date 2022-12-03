@@ -39,23 +39,23 @@ def horizontal_clear():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="В каждой из " + str(len(Pole)) + " строк выберите по одной\n чёрной ячейке для горизонтальной очистки...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="В каждой из " + str(len(Pole)) + " строк выберите по одной\n чёрной ячейке для горизонтальной очистки...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != len(Pole):
-            hint.place(x=60,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=60,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             a = set()
             for j in range(len(Pole)):
                 if Pole[Clicked_Buttons[-j-1][0]][Clicked_Buttons[-j-1][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j-1][0])
             if len(a) != len(Pole):
-                hint.place(x=60,y = 520)
-                hint_.place(x=150,y = 440)
+                hint_label.place(x=60,y = 520)
+                hint_topic.place(x=150,y = 440)
             else:        
                 for i in range(1, len(Pole) + 1):
                     (Pole[Clicked_Buttons[-i][0]]).pop(Clicked_Buttons[-i][1])
@@ -69,23 +69,23 @@ def vertical_clear():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="В каждом из " + str(len(Pole[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки очистки...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="В каждом из " + str(len(Pole[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки очистки...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != len(Pole[0]):
-            hint.place(x=50,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=50,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             a = set()
             for j in range(1, len(Pole[0]) + 1):
                 if Pole[Clicked_Buttons[-j][0]][Clicked_Buttons[-j][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j][1])
             if len(a) != len(Pole[0]):
-                hint.place(x=60,y = 520)
-                hint_.place(x=150,y = 440)
+                hint_label.place(x=60,y = 520)
+                hint_topic.place(x=150,y = 440)
             else:
                 P_1 = [[Pole[i][j] for i in range(len(Pole))] for j in range(len(Pole[0]))]
                 for i in range(1, len(Pole[0]) + 1):
@@ -101,15 +101,15 @@ def down():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите любую ячейку столбца, \nкоторый надо сдвинуть вниз...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите любую ячейку столбца, \nкоторый надо сдвинуть вниз...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=100,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=100,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             n = Clicked_Buttons[-1][1]
             for i in range(-1, -len(Pole), -1):
@@ -124,15 +124,15 @@ def up():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите любую ячейку столбца, \nкотороый надо сдвинуть вверх...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите любую ячейку столбца, \nкотороый надо сдвинуть вверх...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=100,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=100,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             n = Clicked_Buttons[-1][1]
             for i in range(len(Pole) - 1):
@@ -147,15 +147,15 @@ def left():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите любую ячейку строки, \nкоторую надо сдвинуть влево...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите любую ячейку строки, \nкоторую надо сдвинуть влево...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=100,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=100,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             n = Clicked_Buttons[-1][0]
             for j in range(len(Pole[0]) - 1):
@@ -170,15 +170,15 @@ def right():
     global Pole
     global Clicked_Buttons
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите любую ячейку строки, \nкоторую надо сдвинуть вправо...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите любую ячейку строки, \nкоторую надо сдвинуть вправо...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=100,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=100,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             n = Clicked_Buttons[-1][0]
             for j in range(-1, -len(Pole[0]), - 1):
@@ -191,25 +191,25 @@ def right():
         
 def kill():
     global Pole, Clicked_Buttons, player_number, killed_person, cords, score, dead_label, dead_button, dead_topic
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите живого персонажа, находящегося\n рядом с Вами, которого Вы хотите убить...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите живого персонажа, находящегося\n рядом с Вами, которого Вы хотите убить...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=60,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=60,y = 520)
+            hint_topic.place(x=150,y = 440)
             Show(Pole)
         elif Pole[Clicked_Buttons[-1][0]][Clicked_Buttons[-1][1]][2] == 'black':
-            hint.place(x=75,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=75,y = 520)
+            hint_topic.place(x=150,y = 440)
             Show(Pole)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
             if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or abs(cords[player_number - 1][0] - i) + abs(cords[player_number - 1][1] - j) == 0:
-                hint.place(x=60,y = 520)
-                hint_.place(x=150,y = 440)
+                hint_label.place(x=60,y = 520)
+                hint_topic.place(x=150,y = 440)
                 Show(Pole)
             else:
                 killed_person = Pole[i][j][1]
@@ -279,20 +279,20 @@ def question():
     global Clicked_Buttons
     global cords
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Укажите ячейку персонажа, находящуюся рядом\n с Вашим пресонажем, чтобы опросить его...", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Укажите ячейку персонажа, находящуюся рядом\n с Вашим пресонажем, чтобы опросить его...", 
     font=('Arial, 16'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint.place(x=40,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=40,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
             if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or Pole[i][j][2] == 'black':
-                hint.place(x=40,y = 520)
-                hint_.place(x=150,y = 440)
+                hint_label.place(x=40,y = 520)
+                hint_topic.place(x=150,y = 440)
             else:
                 s = []
                 for k in range(len(Pole)):
@@ -337,15 +337,15 @@ def cancel_turn():
     global Pole
     global index
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Вы вернулись в начало игры!", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Вы вернулись в начало игры!", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if index == -len(History) or len(History) == 1:
-            hint.place(x=120,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=120,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             index -= 1
             P_1 = copy.deepcopy(History[index])
@@ -361,15 +361,15 @@ def forward_turn():
     global Pole
     global index
     global killed_person
-    global hint_, hint
+    global hint_topic, hint_label
     help_clear()
-    hint_= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint = tk.Label(text="Вы вернулись в конец игры!", 
+    hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
+    hint_label = tk.Label(text="Вы вернулись в конец игры!", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if index == -1:
-            hint.place(x=120,y = 520)
-            hint_.place(x=150,y = 440)
+            hint_label.place(x=120,y = 520)
+            hint_topic.place(x=150,y = 440)
         else:
             index += 1
             P_1 = copy.deepcopy(History[index])
@@ -455,7 +455,7 @@ def help_with_kill_count():
 def help_with_players_cords():
     global Pole
     global cords
-    global hint, hint_
+    global hint_label, hint_topic
     help_clear()
     for i in range(len(Pole)):
         for j in range(len(Pole[0])):
@@ -464,9 +464,9 @@ def help_with_players_cords():
 
                 
 def help_clear():
-    global hint, hint_
-    hint.destroy()
-    hint_.destroy()
+    global hint_label, hint_topic
+    hint_label.destroy()
+    hint_topic.destroy()
 
     
 def help_to_show(Buttons):
@@ -483,8 +483,8 @@ Buttons = []
 Clicked_Buttons = []
 cords = []
 Pole = [[[[i for i in range(1, players + 1)], 0, "white", 0] for j in range(size)] for k in range(size)]
-hint = tk.Label()
-hint_= tk.Label()
+hint_label = tk.Label()
+hint_topic= tk.Label()
 index = -1
 player_number = 1
 killed_person = 1
@@ -519,27 +519,27 @@ Show_emty_pole(Pole)
 
 
 def help_for_begin():
-    global num, Clicked_Buttons, cords, Pole, hint
+    global num, Clicked_Buttons, cords, Pole, hint_label
     if num <= players:
         if len(Clicked_Buttons) == 1 and Clicked_Buttons[0] not in cords:
-            hint.destroy()
+            hint_label.destroy()
             cords.append(Clicked_Buttons[0])
             Pole[Clicked_Buttons[0][0]][Clicked_Buttons[0][1]][1] = num
             num += 1
             if num <= players:
-                hint = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не \nвидел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
-                hint.place(x=70,y=350)
+                hint_label = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не \nвидел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
+                hint_label.place(x=70,y=350)
             else:
-                hint = tk.Label(text="Да начнется игра!",font=('Arial, 40'),bg="#72F011")
-                hint.place(x=70,y=350)
+                hint_label = tk.Label(text="Да начнется игра!",font=('Arial, 40'),bg="#72F011")
+                hint_label.place(x=70,y=350)
         Show_emty_pole(Pole)
     else:
         begin()
     Clicked_Buttons = []
 
     
-hint = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не\n видел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
-hint.place(x=80,y=350)
+hint_label = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не\n видел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
+hint_label.place(x=80,y=350)
 begin_ = tk.Button(text="Продолжить", bd=5, font=('Arial', 13),fg='red',width=20,height=2,command=lambda :help_for_begin())
 begin_.place(x=200,y=500)
 _begin_ = tk.Label(text="Подготовка к игре",font=('Arial, 60'),bg="#72F011")
@@ -555,7 +555,7 @@ def begin():
     Clicked_Buttons = []
     killed_person = 0
     begin_.destroy()
-    hint.destroy()
+    hint_label.destroy()
     _begin_.destroy()
     turn = tk.Label(text="Ход игрока " + str(player_number),font=('Arial, 30'),bg="#72F011")
     turn.place(x=720, y=60)
