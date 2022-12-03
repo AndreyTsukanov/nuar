@@ -540,10 +540,10 @@ def help_for_begin():
     
 hint_label = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не\n видел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
 hint_label.place(x=80,y=350)
-begin_ = tk.Button(text="Продолжить", bd=5, font=('Arial', 13),fg='red',width=20,height=2,command=lambda :help_for_begin())
-begin_.place(x=200,y=500)
-_begin_ = tk.Label(text="Подготовка к игре",font=('Arial, 60'),bg="#72F011")
-_begin_.place(x=500, y=30)
+begin_button = tk.Button(text="Продолжить", bd=5, font=('Arial', 13),fg='red',width=20,height=2,command=lambda :help_for_begin())
+begin_button.place(x=200,y=500)
+begin_topic = tk.Label(text="Подготовка к игре",font=('Arial, 60'),bg="#72F011")
+begin_topic.place(x=500, y=30)
 
 
 def begin():
@@ -554,9 +554,9 @@ def begin():
     global History
     Clicked_Buttons = []
     killed_person = 0
-    begin_.destroy()
+    begin_button.destroy()
     hint_label.destroy()
-    _begin_.destroy()
+    begin_topic.destroy()
     turn = tk.Label(text="Ход игрока " + str(player_number),font=('Arial, 30'),bg="#72F011")
     turn.place(x=720, y=60)
     turn = tk.Label(text="Ход игрока " + str(player_number),font=('Arial, 30'),bg="#72F011")
