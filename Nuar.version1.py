@@ -2,14 +2,14 @@ import time
 import copy
 import tkinter as tk
 window = tk.Tk()
-window.state('zoomed')
+window.attributes("-fullscreen", True)
 window['bg'] = "#72F011"
 window.title("MetaCodeNuar For Noobs")
 
 # POINT PLAYERS AND SIZE ON LINES 11, 12
 ########################################
 players = 4
-size = 5
+size = 6
 ########################################
 # NEXT FUNCTIONS FOR GAME PROCESS:
 
@@ -46,16 +46,16 @@ def horizontal_clear():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != len(Pole):
-            hint_label.place(x=60,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=60,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             a = set()
             for j in range(len(Pole)):
                 if Pole[Clicked_Buttons[-j-1][0]][Clicked_Buttons[-j-1][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j-1][0])
             if len(a) != len(Pole):
-                hint_label.place(x=60,y = 520)
-                hint_topic.place(x=150,y = 440)
+                hint_label.place(x=60,y = 590)
+                hint_topic.place(x=150,y = 510)
             else:        
                 for i in range(1, len(Pole) + 1):
                     (Pole[Clicked_Buttons[-i][0]]).pop(Clicked_Buttons[-i][1])
@@ -76,16 +76,16 @@ def vertical_clear():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != len(Pole[0]):
-            hint_label.place(x=50,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=50,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             a = set()
             for j in range(1, len(Pole[0]) + 1):
                 if Pole[Clicked_Buttons[-j][0]][Clicked_Buttons[-j][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j][1])
             if len(a) != len(Pole[0]):
-                hint_label.place(x=60,y = 520)
-                hint_topic.place(x=150,y = 440)
+                hint_label.place(x=60,y = 590)
+                hint_topic.place(x=150,y = 510)
             else:
                 P_1 = [[Pole[i][j] for i in range(len(Pole))] for j in range(len(Pole[0]))]
                 for i in range(1, len(Pole[0]) + 1):
@@ -108,8 +108,8 @@ def down():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=100,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=100,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][1]
             for i in range(-1, -len(Pole), -1):
@@ -131,8 +131,8 @@ def up():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=100,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=100,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][1]
             for i in range(len(Pole) - 1):
@@ -154,8 +154,8 @@ def left():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=100,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=100,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][0]
             for j in range(len(Pole[0]) - 1):
@@ -177,8 +177,8 @@ def right():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=100,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=100,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][0]
             for j in range(-1, -len(Pole[0]), - 1):
@@ -198,18 +198,18 @@ def kill():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=60,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=60,y = 590)
+            hint_topic.place(x=150,y = 510)
             Show(Pole)
         elif Pole[Clicked_Buttons[-1][0]][Clicked_Buttons[-1][1]][2] == 'black':
-            hint_label.place(x=75,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=75,y = 590)
+            hint_topic.place(x=150,y = 510)
             Show(Pole)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
             if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or abs(cords[player_number - 1][0] - i) + abs(cords[player_number - 1][1] - j) == 0:
-                hint_label.place(x=60,y = 520)
-                hint_topic.place(x=150,y = 440)
+                hint_label.place(x=60,y = 590)
+                hint_topic.place(x=150,y = 510)
                 Show(Pole)
             else:
                 killed_person = Pole[i][j][1]
@@ -237,11 +237,11 @@ def kill():
                     help_with_kill_count()
                     Pole[i][j][3], Pole[i][j][1] = 0, 0
                     dead_topic = tk.Label(text="Произошло Убийство!",font=('Arial, 30'),bg="#72F011",fg='black')
-                    dead_topic.place(x=80,y=460)
+                    dead_topic.place(x=80,y=530)
                     dead_label = tk.Label(text="Игрок номер " + str(player_number) + " убил игрока номер " + str(killed_person) + ". \nИгрок номер " + str(killed_person) + ", укажите свое место возрождения так,\n чтобы это никто не видел, и нажмите кнопку 'ОК'.",font=('Arial, 15'),bg="#72F011",fg='black')
-                    dead_label.place(x=40,y = 540)
+                    dead_label.place(x=40,y = 610)
                     dead_button= tk.Button(text="ОК", width=7,height=2,font=('Arial, 15'),command=lambda: help_with_spawn())
-                    dead_button.place(x=220,y=650)
+                    dead_button.place(x=220,y=720)
                 else:
                     Q_and_K()
                     help_for_player_turn()
@@ -286,13 +286,13 @@ def question():
     font=('Arial, 16'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != 1:
-            hint_label.place(x=40,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=40,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
             if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or Pole[i][j][2] == 'black':
-                hint_label.place(x=40,y = 520)
-                hint_topic.place(x=150,y = 440)
+                hint_label.place(x=40,y = 590)
+                hint_topic.place(x=150,y = 510)
             else:
                 s = []
                 for k in range(len(Pole)):
@@ -344,8 +344,8 @@ def cancel_turn():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if index == -len(History) or len(History) == 1:
-            hint_label.place(x=120,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=120,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             index -= 1
             P_1 = copy.deepcopy(History[index])
@@ -368,8 +368,8 @@ def forward_turn():
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if index == -1:
-            hint_label.place(x=120,y = 520)
-            hint_topic.place(x=150,y = 440)
+            hint_label.place(x=120,y = 590)
+            hint_topic.place(x=150,y = 510)
         else:
             index += 1
             P_1 = copy.deepcopy(History[index])
@@ -419,7 +419,7 @@ def Show(Pole):
     for i in range(len(Pole)):
         Buttons.append([])
         for j in range(len(Pole[0])):
-            but = tk.Button(text=help_to_show(Pole[i][j][0]), bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=6,height=3, command=lambda x=i, y=j:help_but_click(x, y))
+            but = tk.Button(text=help_to_show(Pole[i][j][0]), bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
             but.grid(row=i+3, column=j+10, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
@@ -434,7 +434,7 @@ def Show_emty_pole(Pole):
     for i in range(len(Pole)):
         Buttons.append([])
         for j in range(len(Pole[0])):
-            but = tk.Button(text="", bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=6,height=3, command=lambda x=i, y=j:help_but_click(x, y))
+            but = tk.Button(text="", bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
             but.grid(row=i+3, column=j+10, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
@@ -564,24 +564,30 @@ def begin():
     help_with_kill_count()
     K = tk.Button(text="Убить", bd=5, font=('Arial', 13),fg='red',width=20,height=2,command=lambda : kill())
     Q = tk.Button(text="Спросить", bd=5, font=('Arial', 13), fg='red',width=20,height=2, command=lambda : question())
-    V = tk.Button(text="Вертикальная чистка", bd=5, font=('Arial', 13),width=20, height=2, fg='red',command=lambda : vertical_clear())
-    H = tk.Button(text="Горизонтальная чистка", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : horizontal_clear())
+    V = tk.Button(text="Вертикальная Чистка", bd=5, font=('Arial', 13),width=20, height=2, fg='red',command=lambda : vertical_clear())
+    H = tk.Button(text="Горизонтальная Чистка", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : horizontal_clear())
     D = tk.Button(text="Вниз", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : down())
     U = tk.Button(text="Вверх", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : up())
     R = tk.Button(text="Вправо", bd=5, font=('Arial', 13),width=20, height=2, fg='red',command=lambda : right())
     L_ = tk.Button(text="Влево", bd=5, font=('Arial', 13), width=20,height=2,fg='red',command=lambda : left())
     C = tk.Button(text="Отменить", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : cancel_turn())
     F = tk.Button(text="Вперёд", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : forward_turn())
-    K.place(x=65, y=75)
-    Q.place(x=270,y=75)
-    V.place(x=270,y=285)
-    H.place(x=65, y=285)
-    D.place(x=65,y=215)
-    U.place(x=270,y=215)
-    R.place(x=270, y=145)
-    L_.place(x=65,y=145)
-    C.place(x=65, y=355)
-    F.place(x=270,y=355)
+    end = tk.Button(text="Завершить Игру", bd=5, font=('Arial', 13),width=20,height=2, fg='red',command=lambda : window.destroy())
+    command_topic = tk.Label(text="Команды:",font=('Arial, 40'),bg="#72F011")
+    command_topic.place(x=150,y=60)
+    count_hint = tk.Label(text="Счёт:",font=('Arial, 40'),bg="#72F011")
+    count_hint.place(x=1300,y=100)
+    K.place(x=65, y=145)
+    Q.place(x=270,y=145)
+    V.place(x=270,y=355)
+    H.place(x=65, y=355)
+    D.place(x=65,y=285)
+    U.place(x=270,y=285)
+    R.place(x=270, y=215)
+    L_.place(x=65,y=215)
+    C.place(x=65, y=425)
+    F.place(x=270,y=425)
+    end.place(x=1275,y=400 + 40 * (players - 4))
     P_ = copy.deepcopy(Pole)
     History = [P_]
     Show(Pole)
