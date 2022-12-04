@@ -333,7 +333,7 @@ def Q_and_K():
 
                         
 def cancel_turn():
-    global All_P
+    global History
     global Pole
     global index
     global killed_person
@@ -357,7 +357,7 @@ def cancel_turn():
 
         
 def forward_turn():
-    global All_P
+    global History
     global Pole
     global index
     global killed_person
