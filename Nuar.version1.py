@@ -6,6 +6,7 @@ window.attributes("-fullscreen", True)
 window['bg'] = "#72F011"
 window.title("MetaCodeNuar For Noobs")
 
+
 # POINT PLAYERS AND SIZE ON LINES 11, 12
 ########################################
 players = 4
@@ -17,18 +18,18 @@ size = 6
 def help_but_click(x, y):
     if [x, y] not in Clicked_Buttons:
         if killed_person == 0:
-            but = tk.Button(text=help_to_show(Pole[x][y][0]), bd=5,width=6, height=3, font=('Arial', 13), bg='gray', fg='black', command=lambda i=x, j=y:help_but_click(i, j))
+            but = tk.Button(text=help_to_show(Matrix[x][y][0]), bd=5,width=7, height=3, font=('Arial', 13), bg='gray', fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         else:
-            but = tk.Button(text="", bd=5,width=6, height=3, font=('Arial', 13), bg='gray', fg='black', command=lambda i=x, j=y:help_but_click(i, j))
+            but = tk.Button(text="", bd=5,width=7, height=3, font=('Arial', 13), bg='gray', fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         Buttons[x][y].destroy()
         Buttons[x][y] = but
         but.grid(row=x + 3, column=y+10, stick='wens', padx=5, pady=5)
         Clicked_Buttons.append([x, y])
     else:
         if killed_person == 0:
-            but = tk.Button(text=help_to_show(Pole[x][y][0]), bd=5,width=6,height=3, font=('Arial', 13), bg=Pole[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
+            but = tk.Button(text=help_to_show(Matrix[x][y][0]), bd=5,width=7,height=3, font=('Arial', 13), bg=Matrix[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         else:
-            but = tk.Button(text="", bd=5,width=6,height=3, font=('Arial', 13), bg=Pole[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
+            but = tk.Button(text="", bd=5,width=7,height=3, font=('Arial', 13), bg=Matrix[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         Buttons[x][y].destroy()
         Buttons[x][y] = but
         but.grid(row=x + 3, column=y+10, stick='wens', padx=5, pady=5)
@@ -36,69 +37,69 @@ def help_but_click(x, y):
 
         
 def horizontal_clear():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
     help_clear()
     hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint_label = tk.Label(text="В каждой из " + str(len(Pole)) + " строк выберите по одной\n чёрной ячейке для горизонтальной очистки...", 
+    hint_label = tk.Label(text="В каждой из " + str(len(Matrix)) + " строк выберите по одной\n чёрной ячейке для горизонтальной очистки...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
-        if len(Clicked_Buttons) != len(Pole):
+        if len(Clicked_Buttons) != len(Matrix):
             hint_label.place(x=60,y = 590)
             hint_topic.place(x=150,y = 510)
         else:
             a = set()
-            for j in range(len(Pole)):
-                if Pole[Clicked_Buttons[-j-1][0]][Clicked_Buttons[-j-1][1]][2] == 'black':
+            for j in range(len(Matrix)):
+                if Matrix[Clicked_Buttons[-j-1][0]][Clicked_Buttons[-j-1][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j-1][0])
-            if len(a) != len(Pole):
+            if len(a) != len(Matrix):
                 hint_label.place(x=60,y = 590)
                 hint_topic.place(x=150,y = 510)
             else:        
-                for i in range(1, len(Pole) + 1):
-                    (Pole[Clicked_Buttons[-i][0]]).pop(Clicked_Buttons[-i][1])
+                for i in range(1, len(Matrix) + 1):
+                    (Matrix[Clicked_Buttons[-i][0]]).pop(Clicked_Buttons[-i][1])
                 help_for_player_turn()
                 help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def vertical_clear():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
     help_clear()
     hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint_label = tk.Label(text="В каждом из " + str(len(Pole[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки очистки...", 
+    hint_label = tk.Label(text="В каждом из " + str(len(Matrix[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки очистки...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
-        if len(Clicked_Buttons) != len(Pole[0]):
+        if len(Clicked_Buttons) != len(Matrix[0]):
             hint_label.place(x=50,y = 590)
             hint_topic.place(x=150,y = 510)
         else:
             a = set()
-            for j in range(1, len(Pole[0]) + 1):
-                if Pole[Clicked_Buttons[-j][0]][Clicked_Buttons[-j][1]][2] == 'black':
+            for j in range(1, len(Matrix[0]) + 1):
+                if Matrix[Clicked_Buttons[-j][0]][Clicked_Buttons[-j][1]][2] == 'black':
                     a.add(Clicked_Buttons[-j][1])
-            if len(a) != len(Pole[0]):
+            if len(a) != len(Matrix[0]):
                 hint_label.place(x=60,y = 590)
                 hint_topic.place(x=150,y = 510)
             else:
-                P_1 = [[Pole[i][j] for i in range(len(Pole))] for j in range(len(Pole[0]))]
-                for i in range(1, len(Pole[0]) + 1):
+                P_1 = [[Matrix[i][j] for i in range(len(Matrix))] for j in range(len(Matrix[0]))]
+                for i in range(1, len(Matrix[0]) + 1):
                     (P_1[Clicked_Buttons[-i][1]]).pop(Clicked_Buttons[-i][0])
-                Pole = [[P_1[i][j] for i in range(len(P_1))] for j in range(len(P_1[0]))]
+                Matrix = [[P_1[i][j] for i in range(len(P_1))] for j in range(len(P_1[0]))]
                 help_for_player_turn()
                 help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def down():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
@@ -112,16 +113,16 @@ def down():
             hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][1]
-            for i in range(-1, -len(Pole), -1):
-                Pole[i][n], Pole[i - 1][n] = Pole[i - 1][n], Pole[i][n]
+            for i in range(-1, -len(Matrix), -1):
+                Matrix[i][n], Matrix[i - 1][n] = Matrix[i - 1][n], Matrix[i][n]
             help_for_player_turn()
             help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def up():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
@@ -135,16 +136,16 @@ def up():
             hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][1]
-            for i in range(len(Pole) - 1):
-                Pole[i][n], Pole[i + 1][n] = Pole[i + 1][n], Pole[i][n]
+            for i in range(len(Matrix) - 1):
+                Matrix[i][n], Matrix[i + 1][n] = Matrix[i + 1][n], Matrix[i][n]
             help_for_player_turn()
             help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def left():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
@@ -158,16 +159,16 @@ def left():
             hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][0]
-            for j in range(len(Pole[0]) - 1):
-                Pole[n][j], Pole[n][j + 1] = Pole[n][j + 1], Pole[n][j]
+            for j in range(len(Matrix[0]) - 1):
+                Matrix[n][j], Matrix[n][j + 1] = Matrix[n][j + 1], Matrix[n][j]
             help_for_player_turn()
             help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def right():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global killed_person
     global hint_topic, hint_label
@@ -181,16 +182,16 @@ def right():
             hint_topic.place(x=150,y = 510)
         else:
             n = Clicked_Buttons[-1][0]
-            for j in range(-1, -len(Pole[0]), - 1):
-                Pole[n][j], Pole[n][j - 1] = Pole[n][j - 1], Pole[n][j]
+            for j in range(-1, -len(Matrix[0]), - 1):
+                Matrix[n][j], Matrix[n][j - 1] = Matrix[n][j - 1], Matrix[n][j]
             help_for_player_turn()
             help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def kill():
-    global Pole, Clicked_Buttons, player_number, killed_person, cords, score, dead_label, dead_button, dead_topic
+    global Matrix, Clicked_Buttons, player_number, killed_person, cords, score, dead_label, dead_button, dead_topic
     global hint_topic, hint_label
     help_clear()
     hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
@@ -200,42 +201,42 @@ def kill():
         if len(Clicked_Buttons) != 1:
             hint_label.place(x=60,y = 590)
             hint_topic.place(x=150,y = 510)
-            Show(Pole)
-        elif Pole[Clicked_Buttons[-1][0]][Clicked_Buttons[-1][1]][2] == 'black':
+            Show(Matrix)
+        elif Matrix[Clicked_Buttons[-1][0]][Clicked_Buttons[-1][1]][2] == 'black':
             hint_label.place(x=75,y = 590)
             hint_topic.place(x=150,y = 510)
-            Show(Pole)
+            Show(Matrix)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
             if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or abs(cords[player_number - 1][0] - i) + abs(cords[player_number - 1][1] - j) == 0:
                 hint_label.place(x=60,y = 590)
                 hint_topic.place(x=150,y = 510)
-                Show(Pole)
+                Show(Matrix)
             else:
-                killed_person = Pole[i][j][1]
-                Pole[i][j][2] = 'black'
-                Pole[i][j][0] = []
-                Pole[i][j][1] = 0
-                score = Pole[i][j][3]
-                Pole[i][j][3] = 0
-                for a in range(len(Pole)):
-                    for b in range(len(Pole[0])):
+                killed_person = Matrix[i][j][1]
+                Matrix[i][j][2] = 'black'
+                Matrix[i][j][0] = []
+                Matrix[i][j][1] = 0
+                score = Matrix[i][j][3]
+                Matrix[i][j][3] = 0
+                for a in range(len(Matrix)):
+                    for b in range(len(Matrix[0])):
                         if abs(a - i) > 1 or abs(b - j) > 1:
-                            if Pole[a][b][2] != 'black':
-                                Pole[a][b][0][player_number - 1] = 0
+                            if Matrix[a][b][2] != 'black':
+                                Matrix[a][b][0][player_number - 1] = 0
                 if killed_person != 0:
-                    for x in range(len(Pole)):
-                        for y in range(len(Pole[0])):
-                            if Pole[x][y][2] != 'black':
-                                Pole[x][y][0][killed_person - 1] = killed_person
-                    Show_emty_pole(Pole)
-                    for a in range(len(Pole)):
-                        for b in range(len(Pole[0])):
-                            if Pole[a][b][1] == player_number:
-                                Pole[a][b][3] += 1
-                    Pole[i][j][3], Pole[i][j][1] = score, killed_person
+                    for x in range(len(Matrix)):
+                        for y in range(len(Matrix[0])):
+                            if Matrix[x][y][2] != 'black':
+                                Matrix[x][y][0][killed_person - 1] = killed_person
+                    Show_emty_pole(Matrix)
+                    for a in range(len(Matrix)):
+                        for b in range(len(Matrix[0])):
+                            if Matrix[a][b][1] == player_number:
+                                Matrix[a][b][3] += 1
+                    Matrix[i][j][3], Matrix[i][j][1] = score, killed_person
                     help_with_kill_count()
-                    Pole[i][j][3], Pole[i][j][1] = 0, 0
+                    Matrix[i][j][3], Matrix[i][j][1] = 0, 0
                     dead_topic = tk.Label(text="Произошло Убийство!",font=('Arial, 30'),bg="#72F011",fg='black')
                     dead_topic.place(x=80,y=530)
                     dead_label = tk.Label(text="Игрок номер " + str(player_number) + " убил игрока номер " + str(killed_person) + ". \nИгрок номер " + str(killed_person) + ", укажите свое место возрождения так,\n чтобы это никто не видел, и нажмите кнопку 'ОК'.",font=('Arial, 15'),bg="#72F011",fg='black')
@@ -246,22 +247,22 @@ def kill():
                     Q_and_K()
                     help_for_player_turn()
                     help_with_players_cords()
-                    Show(Pole)
+                    Show(Matrix)
         Clicked_Buttons = []
 
         
 def help_with_spawn():
     global cords
     global Clicked_Buttons
-    global Pole
+    global Matrix
     global killed_person
     global score
     global dead_button, dead_label, dead_topic
     if len(Clicked_Buttons) == 1:
         i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
-        if Pole[i][j][2] != 'black' and [i, j] not in cords:
-            Pole[i][j][1] = killed_person
-            Pole[i][j][3] = score
+        if Matrix[i][j][2] != 'black' and [i, j] not in cords:
+            Matrix[i][j][1] = killed_person
+            Matrix[i][j][3] = score
             Q_and_K()
             help_with_kill_count()
             help_with_players_cords()
@@ -271,11 +272,11 @@ def help_with_spawn():
             dead_label.destroy()
             dead_topic.destroy()
     Clicked_Buttons = []
-    Show_emty_pole(Pole)
+    Show_emty_pole(Matrix)
         
 
 def question():
-    global Pole
+    global Matrix
     global Clicked_Buttons
     global cords
     global killed_person
@@ -290,52 +291,52 @@ def question():
             hint_topic.place(x=150,y = 510)
         else:
             i, j = Clicked_Buttons[0][0], Clicked_Buttons[0][1]
-            if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or Pole[i][j][2] == 'black':
+            if abs(cords[player_number - 1][0] - i) > 1 or abs(cords[player_number - 1][1] - j) > 1 or Matrix[i][j][2] == 'black':
                 hint_label.place(x=40,y = 590)
                 hint_topic.place(x=150,y = 510)
             else:
                 s = []
-                for k in range(len(Pole)):
-                    for y in range(len(Pole[0])):
-                        if abs(i - k) < 2 and abs(j - y) < 2 and Pole[k][y][1] != 0:
-                            s.append(Pole[k][y][1])
-                for a in range(len(Pole)):
-                    for b in range(len(Pole[0])):
-                        if Pole[a][b][2] != 'black':
+                for k in range(len(Matrix)):
+                    for y in range(len(Matrix[0])):
+                        if abs(i - k) < 2 and abs(j - y) < 2 and Matrix[k][y][1] != 0:
+                            s.append(Matrix[k][y][1])
+                for a in range(len(Matrix)):
+                    for b in range(len(Matrix[0])):
+                        if Matrix[a][b][2] != 'black':
                             for x in range(1, players + 1):
                                 if (abs(a - i) > 1 or abs(b - j) > 1) and x in s:
-                                    Pole[a][b][0][x - 1] = 0
+                                    Matrix[a][b][0][x - 1] = 0
                                 elif (abs(a - i) <= 1 and abs(b - j) <= 1) and x not in s:
-                                    Pole[a][b][0][x - 1] = 0
+                                    Matrix[a][b][0][x - 1] = 0
                 Q_and_K()
                 help_for_player_turn()
                 help_with_players_cords()
         Clicked_Buttons = []
-        Show(Pole)
+        Show(Matrix)
 
         
 def Q_and_K():
-    global Pole
+    global Matrix
     global players
     for a in range(players):
         for player in range(1, players + 1):
             count = 0
             I, J = -1, -1
-            for i in range(len(Pole)):
-                for j in range(len(Pole[0])):
-                    if player in Pole[i][j][0]:
+            for i in range(len(Matrix)):
+                for j in range(len(Matrix[0])):
+                    if player in Matrix[i][j][0]:
                         I, J = i, j
                         count += 1
             if count == 1 and I != -1:
-                for k in range(len(Pole[I][J][0])):
+                for k in range(len(Matrix[I][J][0])):
                     if k != player - 1:
-                        Pole[I][J][0][k] = 0
+                        Matrix[I][J][0][k] = 0
 
                         
 def cancel_turn():
     global History
-    global Pole
-    global index
+    global Matrix
+    global index_turn
     global killed_person
     global hint_topic, hint_label
     help_clear()
@@ -343,23 +344,23 @@ def cancel_turn():
     hint_label = tk.Label(text="Вы вернулись в начало игры!", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
-        if index == -len(History) or len(History) == 1:
+        if index_turn == -len(History) or len(History) == 1:
             hint_label.place(x=120,y = 590)
             hint_topic.place(x=150,y = 510)
         else:
-            index -= 1
-            P_1 = copy.deepcopy(History[index])
-            Pole = copy.deepcopy(P_1)
+            index_turn -= 1
+            P_1 = copy.deepcopy(History[index_turn])
+            Matrix = copy.deepcopy(P_1)
             help_with_player()
             help_with_players_cords()
             help_with_kill_count()
-        Show(Pole)
+        Show(Matrix)
 
         
 def forward_turn():
     global History
-    global Pole
-    global index
+    global Matrix
+    global index_turn
     global killed_person
     global hint_topic, hint_label
     help_clear()
@@ -367,74 +368,74 @@ def forward_turn():
     hint_label = tk.Label(text="Вы вернулись в конец игры!", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
-        if index == -1:
+        if index_turn == -1:
             hint_label.place(x=120,y = 590)
             hint_topic.place(x=150,y = 510)
         else:
-            index += 1
-            P_1 = copy.deepcopy(History[index])
-            Pole = copy.deepcopy(P_1)
+            index_turn += 1
+            P_1 = copy.deepcopy(History[index_turn])
+            Matrix = copy.deepcopy(P_1)
             help_with_player()
             help_with_players_cords()
             help_with_kill_count()
-        Show(Pole)
+        Show(Matrix)
 
         
 def help_for_player_turn():
     global History
-    global Pole
-    global index
+    global Matrix
+    global index_turn
     global player_number
     global turn
-    if index != -1:
-        for i in range(-1, index, -1):
+    if index_turn != -1:
+        for i in range(-1, index_turn, -1):
             History.pop(-1)
-    index = -1
+    index_turn = -1
     player_number = player_number % players + 1
     turn.destroy()
     turn = tk.Label(text="Ход игрока " + str(player_number),font=('Arial, 30'),bg="#72F011")
     turn.place(x=720, y=60)
-    X = copy.deepcopy(Pole)
+    X = copy.deepcopy(Matrix)
     History.append(X)
 
     
 def help_with_player():
-    global index
+    global index_turn
     global player_number
     global turn
     global History
-    player_number = (len(History) + index) % players + 1
+    player_number = (len(History) + index_turn) % players + 1
     turn.destroy()
     turn = tk.Label(text="Ход игрока " + str(player_number),font=('Arial, 30'),bg="#72F011")
     turn.place(x=720, y=60)
 
     
-def Show(Pole):
+def Show(Matrix):
     global Buttons
     global players
     for i in range(len(Buttons)):
         for j in range(len(Buttons[0])):            
             Buttons[i][j].destroy()   
     Buttons = []
-    for i in range(len(Pole)):
+    for i in range(len(Matrix)):
         Buttons.append([])
-        for j in range(len(Pole[0])):
-            but = tk.Button(text=help_to_show(Pole[i][j][0]), bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
+        for j in range(len(Matrix[0])):
+            but = tk.Button(text=help_to_show(Matrix[i][j][0]), bd=5, font=('Arial', 13), bg =Matrix[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
             but.grid(row=i+3, column=j+10, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
             
-def Show_emty_pole(Pole):
+def Show_emty_pole(Matrix):
     global Buttons
     global players
     for i in range(len(Buttons)):
         for j in range(len(Buttons[0])):            
             Buttons[i][j].destroy()   
     Buttons = []
-    for i in range(len(Pole)):
+    for i in range(len(Matrix)):
         Buttons.append([])
-        for j in range(len(Pole[0])):
-            but = tk.Button(text="", bd=5, font=('Arial', 13), bg =Pole[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
+        for j in range(len(Matrix[0])):
+            but = tk.Button(text="", bd=5, font=('Arial', 13), bg =Matrix[i][j][2], fg='black',width=7,height=3, command=lambda x=i, y=j:help_but_click(x, y))
             but.grid(row=i+3, column=j+10, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
@@ -444,23 +445,23 @@ def help_with_kill_count():
     for elem in Counts:
         elem.destroy()
     for i in range(1, players + 1):
-        for a in range(len(Pole)):
-            for b in range(len(Pole[0])):
-                if Pole[a][b][1] == i:
-                    text_ = tk.Label(text="Счёт игрока " + str(i) + " : " + str(Pole[a][b][3]),font=('Arial, 15'),bg="#72F011")
+        for a in range(len(Matrix)):
+            for b in range(len(Matrix[0])):
+                if Matrix[a][b][1] == i:
+                    text_ = tk.Label(text="Счёт игрока " + str(i) + " : " + str(Matrix[a][b][3]),font=('Arial, 15'),bg="#72F011")
                     Counts.append(text_)
                     Counts[-1].place(x=1300,y=200 + 40 * (i - 1))
 
                        
 def help_with_players_cords():
-    global Pole
+    global Matrix
     global cords
     global hint_label, hint_topic
     help_clear()
-    for i in range(len(Pole)):
-        for j in range(len(Pole[0])):
-            if Pole[i][j][1] != 0:
-                cords[Pole[i][j][1] - 1] = [i, j]
+    for i in range(len(Matrix)):
+        for j in range(len(Matrix[0])):
+            if Matrix[i][j][1] != 0:
+                cords[Matrix[i][j][1] - 1] = [i, j]
 
                 
 def help_clear():
@@ -482,10 +483,10 @@ def help_to_show(Buttons):
 Buttons = []
 Clicked_Buttons = []
 cords = []
-Pole = [[[[i for i in range(1, players + 1)], 0, "white", 0] for j in range(size)] for k in range(size)]
+Matrix = [[[[i for i in range(1, players + 1)], 0, "white", 0] for j in range(size)] for k in range(size)]
 hint_label = tk.Label()
 hint_topic= tk.Label()
-index = -1
+index_turn = -1
 player_number = 1
 killed_person = 1
 num = 1
@@ -515,31 +516,31 @@ window.grid_rowconfigure(7, minsize=70)
 window.grid_rowconfigure(8, minsize=70)
 window.grid_rowconfigure(9, minsize=70)
 window.grid_rowconfigure(10, minsize=70)
-Show_emty_pole(Pole)
+Show_emty_pole(Matrix)
 
 
 def help_for_begin():
-    global num, Clicked_Buttons, cords, Pole, hint_label
+    global num, Clicked_Buttons, cords, Matrix, hint_label
     if num <= players:
         if len(Clicked_Buttons) == 1 and Clicked_Buttons[0] not in cords:
             hint_label.destroy()
             cords.append(Clicked_Buttons[0])
-            Pole[Clicked_Buttons[0][0]][Clicked_Buttons[0][1]][1] = num
+            Matrix[Clicked_Buttons[0][0]][Clicked_Buttons[0][1]][1] = num
             num += 1
             if num <= players:
-                hint_label = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не \nвидел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
+                hint_label = tk.Label(text="Игрок номер " + str(num) + ", укажите своего \nперсонажа так, чтобы этого никто не \nвидел, и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
                 hint_label.place(x=70,y=350)
             else:
                 hint_label = tk.Label(text="Да начнется игра!",font=('Arial, 40'),bg="#72F011")
                 hint_label.place(x=70,y=350)
-        Show_emty_pole(Pole)
+        Show_emty_pole(Matrix)
     else:
         begin()
     Clicked_Buttons = []
 
     
-hint_label = tk.Label(text="Игрок номер " + str(num) + " укажите своего \nперсонажа так, чтобы этого никто не\n видел и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
-hint_label.place(x=80,y=350)
+hint_label = tk.Label(text="Игрок номер " + str(num) + ", укажите своего \nперсонажа так, чтобы этого никто не \nвидел, и нажмте кнопку 'Продолжить'",font=('Arial, 20'),bg="#72F011")
+hint_label.place(x=70,y=350)
 begin_button = tk.Button(text="Продолжить", bd=5, font=('Arial', 13),fg='red',width=20,height=2,command=lambda :help_for_begin())
 begin_button.place(x=200,y=500)
 begin_topic = tk.Label(text="Подготовка к игре",font=('Arial, 60'),bg="#72F011")
@@ -550,7 +551,7 @@ def begin():
     global turn
     global killed_person
     global Clicked_Buttons
-    global Pole
+    global Matrix
     global History
     Clicked_Buttons = []
     killed_person = 0
@@ -588,9 +589,9 @@ def begin():
     C.place(x=65, y=425)
     F.place(x=270,y=425)
     end.place(x=1275,y=400 + 40 * (players - 4))
-    P_ = copy.deepcopy(Pole)
+    P_ = copy.deepcopy(Matrix)
     History = [P_]
-    Show(Pole)
+    Show(Matrix)
 
     
 window.mainloop()
