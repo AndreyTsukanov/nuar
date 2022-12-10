@@ -229,7 +229,7 @@ def kill():
                             for y in range(len(Table[0])):
                                 if Table[x][y][2] != 'black':
                                     Table[x][y][0][killed_person - 1] = killed_person
-                        Show_emty_pole(Table)
+                        show_empty_table(Table)
                         player_trophy[player_number - 1] += 1
                         help_with_kill_count()
                         dead_topic = tk.Label(text="Произошло Убийство!",font=('Arial, 30'),bg="#72F011",fg='black')
@@ -243,7 +243,7 @@ def kill():
                             for y in range(len(Table[0])):
                                 if Table[x][y][2] != 'black':
                                     Table[x][y][0][killed_person - 1] = 0
-                        Show_emty_pole(Table)
+                        show_empty_table(Table)
                         player_trophy[player_number - 1] += 1
                         help_with_kill_count()
                         player_cords[killed_person - 1] = [-10, -10]
@@ -289,7 +289,7 @@ def help_with_spawn():
                 dead_label.destroy()
                 dead_topic.destroy()
     Clicked_Buttons = []
-    Show_emty_pole(Table)
+    show_empty_table(Table)
         
 
 def question():
@@ -421,9 +421,9 @@ def help_for_player_turn():
     player_number = player_turn[(player_turn.index(player_number) + 1) % len(player_turn)]
     help_with_player()
     Table_ = copy.deepcopy(Table)
-    player_turn_ = copy.deepcopy(player_turn)
-    player_cords_ = copy.deepcopy(player_cords)
-    player_trophy_ = copy.deepcopy(player_trophy)
+    player_turn_ = player_turn[:]
+    player_cords_ = player_cords[:]
+    player_trophy_ = player_trophy[:]
     copy_ = [Table_, player_cords_, player_trophy_, player_turn_, player_number, people_alive]
     History.append(copy_)
 
@@ -451,7 +451,7 @@ def Show(Table):
             Buttons[-1].append(but)
 
             
-def Show_emty_pole(Table):
+def show_empty_table(Table):
     global Buttons
     global players
     for i in range(len(Buttons)):
@@ -543,7 +543,7 @@ window.grid_rowconfigure(7, minsize=70)
 window.grid_rowconfigure(8, minsize=70)
 window.grid_rowconfigure(9, minsize=70)
 window.grid_rowconfigure(10, minsize=70)
-Show_emty_pole(Table)
+show_empty_table(Table)
 
 
 def help_for_begin():
@@ -560,7 +560,7 @@ def help_for_begin():
             else:
                 hint_label = tk.Label(text="Да начнется игра!",font=('Arial, 40'),bg="#72F011")
                 hint_label.place(x=70,y=350)
-        Show_emty_pole(Table)
+        show_empty_table(Table)
     else:
         begin()
     Clicked_Buttons = []
@@ -617,9 +617,9 @@ def begin():
     F.place(x=270,y=425)
     end.place(x=1275,y=400 + 40 * (players - 4))
     Table_ = copy.deepcopy(Table)
-    player_turn_ = copy.deepcopy(player_turn)
-    player_cords_ = copy.deepcopy(player_cords)
-    player_trophy_ = copy.deepcopy(player_trophy)
+    player_turn_ = player_turn[:]
+    player_cords_ = player_cords[:]
+    player_trophy_ = player_trophy[:]
     copy_ = [Table_, player_cords_, player_trophy_, player_turn_, player_number, people_alive]
     History = [copy_]
     Show(Table)
