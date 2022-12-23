@@ -2,9 +2,14 @@ import time
 import copy
 import tkinter as tk
 window = tk.Tk()
-window.attributes("-fullscreen", True)
+#window.attributes("-fullscreen", True)
+window.geometry("1650x900")
 window['bg'] = "#72F011"
-window.title("Один против Всех")
+window.title("Один против всех")
+width = 1536
+height = 864
+width_ = window.winfo_screenwidth()
+height_ = window.winfo_screenheight()
 
 
 # POINT PLAYERS AND SIZE ON LINES 11, 12
@@ -73,7 +78,7 @@ def vertical_clear():
     global hint_topic, hint_label
     help_clear()
     hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#72F011")
-    hint_label = tk.Label(text="В каждом из " + str(len(Table[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки очистки...", 
+    hint_label = tk.Label(text="В каждом из " + str(len(Table[0])) + " столбцов выберите по одной \nчёрной ячейке для вертикальной очистки...", 
     font=('Arial, 15'),bg="#72F011",fg='black')
     if killed_person == 0:
         if len(Clicked_Buttons) != len(Table[0]):
