@@ -2,8 +2,8 @@ import time
 import copy
 import tkinter as tk
 window = tk.Tk()
-#window.attributes("-fullscreen", True)
-window.geometry("1650x900")
+window.attributes("-fullscreen", True)
+#window.geometry("1650x900")
 window['bg'] = "#72F011"
 window.title("Один против всех")
 width = 1536
@@ -525,6 +525,7 @@ player_trophy = [0 for i in range(players)]
 player_number = 1
 # POINT PLAYERS AND SIZE ON LiNES 11, 12
 # NEXT FUNCTIONS FOR BEGINING GAME:
+
 
 window.grid_columnconfigure(0, minsize=60)
 window.grid_columnconfigure(1, minsize=60)
