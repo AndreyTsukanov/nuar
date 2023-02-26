@@ -18,9 +18,9 @@ height = 864
 #height = window.winfo_screenheight()
 
 
-# POINT PLAYERS AND SIZE ON LINES 11, 12
+# POINT PLAYERS AND SIZE ON LINES 23, 24
 ########################################
-players = 2
+players = 3
 size = 6
 ########################################
 # NEXT FUNCTIONS FOR GAME PROCESS:
@@ -445,7 +445,7 @@ def help_but_click(x, y):
         but = tk.Button(text=help_to_show(Table[x][y][0]), bd=5,width=10, height=4, font=('Arial', 12), bg='gray', fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         Buttons[x][y].destroy()
         Buttons[x][y] = but
-        but.grid(row=x + 3, column=y+8, stick='wens', padx=5, pady=5)
+        but.grid(row=x + 3, column=y+k, stick='wens', padx=5, pady=5)
         Clicked_Buttons.append([x, y])
     else:
         if Table[x][y][2] == 'black':
@@ -454,7 +454,7 @@ def help_but_click(x, y):
             but = tk.Button(text=help_to_show(Table[x][y][0]), bd=5,width=10,height=4, font=('Arial', 12), bg=Table[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
         Buttons[x][y].destroy()
         Buttons[x][y] = but
-        but.grid(row=x + 3, column=y+8, stick='wens', padx=5, pady=5)
+        but.grid(row=x + 3, column=y+k, stick='wens', padx=5, pady=5)
         Clicked_Buttons.pop(Clicked_Buttons.index([x, y]))
 
     
@@ -472,7 +472,7 @@ def Show(Table):
                 but = tk.Button(text=help_to_show(Table[i][j][0]), bd=5, font=('Arial', 12), bg =Table[i][j][2], fg='white',width=10,height=4, command=lambda x=i, y=j:help_but_click(x, y))
             else:
                 but = tk.Button(text=help_to_show(Table[i][j][0]), bd=5, font=('Arial', 12), bg =Table[i][j][2], fg='black',width=10,height=4, command=lambda x=i, y=j:help_but_click(x, y))
-            but.grid(row=i+3, column=j+8, stick='wens', padx=5, pady=5)
+            but.grid(row=i+3, column=j+k, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
           
@@ -487,7 +487,7 @@ def show_empty_table(Table):
         Buttons.append([])
         for j in range(len(Table[0])):
             but = tk.Button(text="", bd=5, font=('Arial', 10), bg =Table[i][j][2], fg='black',width=9,height=3, command=lambda x=i, y=j:help_but_click(x, y))
-            but.grid(row=i+3, column=j+10, stick='wens', padx=5, pady=5)
+            but.grid(row=i+3, column=j+k, stick='wens', padx=5, pady=5)
             Buttons[-1].append(but)
 
 
@@ -536,6 +536,7 @@ hint_topic= tk.Label()
 index_turn = -1
 killed_person = 1
 num = 1
+k = 8 + 1 * (size==5) + 2 * (size==4) + 3 * (size==3)
 Counts = []
 people_alive = size ** 2
 player_cords = []
@@ -554,9 +555,8 @@ for i in range(size ** 2):
     Table[i // size][i % size][0] = NAMES[j]
     PLAYERS_NAMES.append(NAMES[j])
     NAMES.pop(j)
-# POINT PLAYERS AND SIZE ON LiNES 11, 12
+# POINT PLAYERS AND SIZE ON LiNES 23, 24
 # NEXT FUNCTIONS FOR BEGINING GAME:
-
 window.grid_columnconfigure(0, minsize=60)
 window.grid_columnconfigure(1, minsize=60)
 window.grid_columnconfigure(2, minsize=60)
