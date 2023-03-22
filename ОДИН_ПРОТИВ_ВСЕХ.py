@@ -4,9 +4,6 @@ import global_class_file_
 from global_class_file_ import window_, players, size
 
 
-window_ = global_class_file_.window_
-players = global_class_file_.players
-size = global_class_file_.size
 game = global_class_file_.ONE_AGAINST_ALL()
 game.change_table()
 
@@ -192,13 +189,9 @@ def show_empty_table():
             but.grid(row=i+3, column=j+game.k, stick='wens', padx=5, pady=5)
             game.Buttons[-1].append(but)
 
-
-# GLOBAL VARIABLES
+#BEGINING
+#####################################################
 num = 1
-# POINT PLAYERS AND SIZE ON LiNES 11, 12
-# NEXT FUNCTIONS FOR BEGINING GAME:
-
-
 window_.grid_columnconfigure(0, minsize=60)
 for i in range(1, 11):
    window_.grid_columnconfigure(i, minsize=60)
