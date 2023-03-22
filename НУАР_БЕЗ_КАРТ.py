@@ -1,4 +1,3 @@
-from global_class_file_ import players, size
 import tkinter as tk
 import random
 import copy
@@ -159,8 +158,6 @@ def help_with_Q():
 # BEGINING
 ############################################################################
 window_.grid_columnconfigure(0, minsize=60)
-# POINT PLAYERS AND SIZE ON LiNES 23, 24
-# NEXT FUNCTIONS FOR BEGINING GAME:
 for i in range(1,11):
     window_.grid_columnconfigure(i, minsize=60)
     window_.grid_rowconfigure(i, minsize=70)
