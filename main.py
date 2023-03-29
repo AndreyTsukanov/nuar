@@ -29,7 +29,6 @@ while True:
     m_3 = tk.Button(text="СЫЩИК ПРОТИВ ВОРА",font=('Arial, 15'),bd=20,width=22,height=4,bg = "#DAA520",command=lambda: change_n(3))
     m_4 = tk.Button(text="КРАТКОЕ ОПИСАНИЕ",font=('Arial, 15'),bd=20,width = 22,height=4,bg = "green")
     m_5 = tk.Button(text="ВЫЙТИ ИЗ МЕНЮ",font=('Arial, 15'),bd=20,width = 22,height=4,bg = "#db5a32",command=lambda: window.destroy())
-    терпит = 0
     m_1.place(x=200,y=280)
     m_2.place(x=600,y=280)
     m_3.place(x=1000,y=280)
