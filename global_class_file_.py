@@ -1,23 +1,10 @@
-from choose_players_and_size import players, size
-
-
+import tkinter as tk
 import random
 import copy
-import tkinter as tk
-window_ = tk.Tk()
-#width = window_.winfo_screenwidth()
-#height = window_.winfo_screenheight()
-window_.attributes("-fullscreen", True)
-window_.geometry("1650x900")
-window_['bg'] = "#72F011"
-window_.title("НУАР без карт")
-window_.image = tk.PhotoImage(file="Background.png")
-bg_logo = tk.Label(window_, image=window_.image)
-bg_logo.place(x=0, y=0)
 
 
 class Game_without_cards:
-    def __init__(self):
+    def update(self, players, size):
         self.turn = tk.Label()
         self.History = []
         self.bg_ = "#DAA520"
@@ -49,11 +36,18 @@ class Game_without_cards:
             self.NAMES.pop(j)
         self.players = players
         self.size = size
+        self.dead_label = tk.Label()
+        self.dead_topic = tk.Label()
+        self.dead_button = tk.Button()
+        self.name = ""
+        self.ok_button = tk.Button()
+        self.name_label = tk.Button()
+        self.HELP_BUTTON = tk.Button()
+        self.begin_button = tk.Button()
 
 
-class ONE_AGAINST_ALL(Game_without_cards):
     def change_table(self):
-        self.Table = [[[[i for i in range(1, players + 1)], 0, "white"] for j in range(size)] for k in range(size)]
+        self.Table = [[[[i for i in range(1, self.players + 1)], 0, "white"] for j in range(self.size)] for k in range(self.size)]
 
 
 def left(game):
@@ -266,8 +260,8 @@ def vertical_clear(game):
 def help_with_kill_count(game):
     for elem in game.Counts:
         elem.destroy()
-    for i in range(1, players + 1):
-        text_ = tk.Label(text="Счёт игрока " + str(i) + " : " + str(game.player_trophy[i - 1]),font=('Arial, 15'),bg="#DAA520")
+    for i in range(1, game.players + 1):
+        text_ = tk.Label(text="Счёт игрока " + str(i) + " : " + str(game.player_trophy[i - 1]),font=('Arial, 15'),bg=game.bg_)
         game.Counts.append(text_)
         game.Counts[-1].place(x=1300,y=200 + 40 * (i - 1))
 
@@ -275,9 +269,9 @@ def help_with_kill_count(game):
 def cancel_turn(game):
     game.hint_label.destroy()
     game.hint_topic.destroy()
-    game.hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#DAA520")
+    game.hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg=game.bg_)
     game.hint_label = tk.Label(text="Вы вернулись в начало игры!", 
-    font=('Arial, 15'),bg="#DAA520",fg='black')
+    font=('Arial, 15'),bg=game.bg_,fg='black')
     if game.killed_person == 0:
         if game.index_turn == -len(game.History) or len(game.History) == 1:
             game.hint_label.place(x=90,y = 590)
@@ -301,9 +295,9 @@ def cancel_turn(game):
 def forward_turn(game):
     game.hint_label.destroy()
     game.hint_topic.destroy()
-    game.hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg="#DAA520")
+    game.hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg=game.bg_)
     game.hint_label = tk.Label(text="Вы вернулись в конец игры!", 
-    font=('Arial, 15'),bg="#DAA520",fg='black')
+    font=('Arial, 15'),bg=game.bg_,fg='black')
     if game.killed_person == 0:
         if game.index_turn == -1:
             game.hint_label.place(x=90,y = 590)
@@ -322,4 +316,3 @@ def forward_turn(game):
             help_with_players_cords(game)
             help_with_kill_count(game)
         Show(game)
-
