@@ -1,5 +1,5 @@
 def choose():
-    global players, size, begin_topic, tk
+    global players, size, begin_topic
     import tkinter as tk
     window = tk.Tk()
     # print(window.winfo_screenwidth())
