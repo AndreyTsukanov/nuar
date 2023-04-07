@@ -1,10 +1,13 @@
 def mod_1():
+    import tkinter as tk
+    import copy
     import choose_players_and_size
+    import global_class_file_
+    
+    
     choose_players_and_size.choose()
     size = choose_players_and_size.size
     players = choose_players_and_size.players
-    import tkinter as tk
-    import copy
     window_ = tk.Tk()
     window_.attributes("-fullscreen", True)
     window_.geometry("1650x900")
@@ -13,8 +16,6 @@ def mod_1():
     window_.image = tk.PhotoImage(file="Background.png")
     bg_logo = tk.Label(window_, image=window_.image)
     bg_logo.place(x=0, y=0)
-    import global_class_file_
-    del choose_players_and_size
     
     
     game = global_class_file_.Game_without_cards()
