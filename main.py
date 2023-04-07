@@ -1,6 +1,7 @@
 from ONE__AGAINST__ALL import mod_1
 from NUAR__WITHOUT__CARDS import mod_2
 from DETECTIVE__AGAINST__THIEF import mod_3
+from short_description import description
 
 
 def change_n(i):
@@ -27,7 +28,7 @@ while True:
     m_1 = tk.Button(text="ОДИН ПРОТИВ ВСЕХ",font=('Arial, 15'),bd=20,width=22,height=4,bg = "#DAA520",command=lambda: change_n(1))
     m_2 = tk.Button(text="НУАР БЕЗ КАРТ",font=('Arial, 15'),bd=20,width=22,height=4,bg = "#DAA520",command=lambda: change_n(2))
     m_3 = tk.Button(text="СЫЩИК ПРОТИВ ВОРА",font=('Arial, 15'),bd=20,width=22,height=4,bg = "#DAA520",command=lambda: change_n(3))
-    m_4 = tk.Button(text="КРАТКОЕ ОПИСАНИЕ",font=('Arial, 15'),bd=20,width = 22,height=4,bg = "green")
+    m_4 = tk.Button(text="КРАТКОЕ ОПИСАНИЕ",font=('Arial, 15'),bd=20,width = 22,height=4,bg = "green",command=lambda: change_n(4))
     m_5 = tk.Button(text="ВЫЙТИ ИЗ МЕНЮ",font=('Arial, 15'),bd=20,width = 22,height=4,bg = "#db5a32",command=lambda: window.destroy())
     m_1.place(x=200,y=280)
     m_2.place(x=600,y=280)
@@ -41,5 +42,7 @@ while True:
         mod_2()
     elif n == 3:
         mod_3()
+    elif n == 4:
+        description()
     else:
         break
