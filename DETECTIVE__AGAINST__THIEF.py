@@ -152,6 +152,8 @@ def mod_3():
             for j in range(len(game.Table[0])):
                 if game.Table[i][j][1] == 2:
                     but = tk.Button(text=game.Table[i][j][0], bd=15,font=('TimesNewRoman', 13,'underline'), fg="blue", bg = game.Table[i][j][2],width=10,height=4, command=lambda x=i, y=j:help_but_click(x, y))
+                elif game.Table[i][j][2] == 'black':
+                    but = tk.Button(text=game.Table[i][j][0], bd=15,width=10,height=4, font=('Arial', 13), bg=game.Table[i][j][2], fg='white', command=lambda x=i, y=j:help_but_click(x, y))
                 else:
                     but = tk.Button(text=game.Table[i][j][0], bd=15, font=('Arial', 13), bg = game.Table[i][j][2], fg='black',width=10,height=4, command=lambda x=i, y=j:help_but_click(x, y))
                 but.grid(row=i+3, column=j+game.k, stick='wens', padx=5, pady=5)
@@ -171,6 +173,8 @@ def mod_3():
         else:
             if game.Table[x][y][1] == 2:
                 but = tk.Button(text=game.Table[x][y][0], bd=15,width=10,height=4, font=('TimesNewRoman', 13,'underline'), bg=game.Table[x][y][2], fg='blue', command=lambda i=x, j=y:help_but_click(i, j))
+            elif game.Table[x][y][2] == 'black':
+                but = tk.Button(text=game.Table[x][y][0], bd=15,width=10,height=4, font=('Arial', 13), bg=game.Table[x][y][2], fg='white', command=lambda i=x, j=y:help_but_click(i, j))
             else:
                 but = tk.Button(text=game.Table[x][y][0], bd=15,width=10,height=4, font=('Arial', 13), bg=game.Table[x][y][2], fg='black', command=lambda i=x, j=y:help_but_click(i, j))
             game.Buttons[x][y].destroy()
@@ -267,16 +271,16 @@ def mod_3():
         game.hint_label = tk.Label(text="Укажите офицера, которого\n Вы хотите сменить.", 
         font=('Arial, 16'),bg=game.bg_,fg='black')
         if len(game.Clicked_Buttons) != 1:
-            game.hint_label.place(x=70,y = 590)
+            game.hint_label.place(x=80,y = 590)
             game.hint_topic.place(x=120, y=510)
         else:
             i, j = game.Clicked_Buttons[0][0], game.Clicked_Buttons[0][1]
             if game.Table[i][j][1] != 2:
-                game.hint_label.place(x=70,y = 590)
+                game.hint_label.place(x=80,y = 590)
                 game.hint_topic.place(x=120, y=510)
             elif game.PLAYERS_NAMES.count("") == game.size ** 2:
                 game.hint_label = tk.Label(text="Свободных офицеров не осталось!", font=('Arial, 16'),bg=game.bg_,fg='black')
-                game.hint_label.place(x=30,y = 590)
+                game.hint_label.place(x=70,y = 590)
                 game.hint_topic.place(x=120, y=510)
             else:
                 game.Table[i][j][1] = 0
@@ -306,7 +310,7 @@ def mod_3():
         game.hint_topic= tk.Label(text="Подсказка:",font=('Arial, 30'),bg=game.bg_)
         game.hint_label = tk.Label(text="Укажите персонажа (не офицера), \nнаходящегося рядом с Вашими офицерами,\n чтобы допросить его.", font=('Arial, 16'),bg=game.bg_,fg='black')
         if len(game.Clicked_Buttons) != 1:
-            game.hint_label.place(x=30,y = 590)
+            game.hint_label.place(x=20,y = 590)
             game.hint_topic.place(x=120, y=510)
         else:
             i, j = game.Clicked_Buttons[0][0], game.Clicked_Buttons[0][1]
@@ -318,7 +322,7 @@ def mod_3():
                 game.hint_label.place(x=40,y = 590)
                 game.hint_topic.place(x=120, y=510)
             elif game.Table[i][j][1] == 2:
-                game.hint_label.place(x=30,y = 590)
+                game.hint_label.place(x=20,y = 590)
                 game.hint_topic.place(x=120, y=510)
             elif game.Table[i][j][1] == 0:
                 game.hint_label = tk.Label(text=f"{game.Table[i][j][0].upper()} не является \nтекущей личностью вора.", font=('Arial, 20'),bg=game.bg_,fg='black')
@@ -391,9 +395,9 @@ def mod_3():
         window_.grid_columnconfigure(i, minsize=60)
         window_.grid_rowconfigure(i, minsize=70)
     Show()
-    game.hint_label = tk.Label(text="СЫЩИК! Нажми на кнопку \n'УЗНАТЬ ДЕТЕКТИВОВ', чтобы\n узнать своих офицеров,\nа затем нажми кнопку 'ОК'",font=('Arial, 20'),bg=game.bg_)
+    game.hint_label = tk.Label(text="СЫЩИК! Нажми на кнопку \n'УЗНАТЬ ОФИЦЕРОВ', чтобы\n узнать своих офицеров,\nа затем нажми кнопку 'ОК'",font=('Arial, 20'),bg=game.bg_)
     game.hint_label.place(x=40,y=350)
-    game.begin_button = tk.Button(text="Узнать детективов", bd=5, font=('Arial', 13),fg='black', bg='silver',width=20,height=2,command=lambda :help_for_begin_1())
+    game.begin_button = tk.Button(text="Узнать офицеров", bd=5, font=('Arial', 13),fg='black', bg='silver',width=20,height=2,command=lambda :help_for_begin_1())
     game.begin_button.place(x=130,y=530)
     begin_topic = tk.Label(text="Подготовка к игре",font=('Arial, 60'),bg=game.bg_)
     begin_topic.place(x=550, y=30)
@@ -431,6 +435,7 @@ def mod_3():
                 i = random.choice(game.rand_list)
             name = game.PLAYERS_NAMES[i]
             game.PLAYERS_NAMES[i] = ""
+            game.Table[i // size][i % size][2] = "black"
             game.list_.append(name)
         game.begin_button.destroy()
         game.hint_label.destroy()
@@ -441,9 +446,14 @@ def mod_3():
             but = tk.Button(text=game.list_[j], bd=5, font=('Arial', 13), bg = "black", fg='white',width=10,height=4, command=lambda x=j:(change_thief(game.list_[x]), help_for_begin_3()))
             game.list_buttons.append(but)
             but.place(x = 50 + j*150, y = 470)
+        Show()
     
     
     def help_for_begin_3():
+        for k in range(len(game.Table)):
+            for j in range(len(game.Table[0])):
+                if game.Table[k][j][2] == "black":
+                    game.Table[k][j][2] = "#ebc923"
         for elem in game.list_buttons:
             elem.destroy()
         game.begin_button.destroy()
