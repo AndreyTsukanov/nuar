@@ -1,11 +1,14 @@
 def mod_2():
     import random
+    import copy
+    import tkinter as tk
     import choose_players_and_size
+    import global_class_file_
+    
+    
     choose_players_and_size.choose()
     players = choose_players_and_size.players
     size = choose_players_and_size.size
-    import copy
-    import tkinter as tk
     window_ = tk.Tk()
     window_.attributes("-fullscreen", True)
     window_.geometry("1650x900")
@@ -14,8 +17,6 @@ def mod_2():
     window_.image = tk.PhotoImage(file="Background.png")
     bg_logo = tk.Label(window_, image=window_.image)
     bg_logo.place(x=0, y=0)
-    import global_class_file_
-    del choose_players_and_size
     
     
     game = global_class_file_.Game_without_cards()
@@ -98,6 +99,7 @@ def mod_2():
                     if game.Table[x][y][0] == game.PLAYERS_NAMES[i]:
                         game.player_cords[game.killed_person - 1] = [x, y]
                         game.Table[x][y][1] = game.killed_person
+                        game.Table[x][y][2] = 'green'
             game.name = game.PLAYERS_NAMES[i]
             game.PLAYERS_NAMES[i] = ""
             game.name_label = tk.Label(text="Игрок номер " + str(game.killed_person) + ", Вы играете\n за персонажа " + str(game.name) + "!\nХорошенько запомните его!",font=('Arial, 20'),bg="#DAA520")
@@ -109,6 +111,10 @@ def mod_2():
     
     
     def func_OK():
+        for i in range(len(game.Table)):
+            for j in range(len(game.Table[0])):
+                if game.Table[i][j][2] == 'green':
+                    game.Table[i][j][2] = 'white'
         game.ok_button.destroy()
         game.name_label.destroy()
         global_class_file_.help_for_player_turn(game)
@@ -181,12 +187,14 @@ def mod_2():
         game.player_cords.append([i // size, i % size])
         game.name = game.PLAYERS_NAMES[i]
         game.Table[i // size][i % size][1] = game.num
+        game.Table[i // size][i % size][2] = 'green'
         game.PLAYERS_NAMES[i] = ""
         game.name_label = tk.Label(text="Игрок номер " + str(game.num) +", Вы играете\n за персонажа " + str(game.name) + "!\nХорошенько запомните его!",font=('Arial, 20'),bg="#DAA520")
         game.name_label.place(x=40,y=350)
         game.ok_button = tk.Button(text="ОК", bd=5, font=('Arial', 13),fg='red', bg='silver',width=20,height=2,command=lambda :function_OK())
         game.ok_button.place(x=120,y=510)
         global_class_file_.Show(game)
+        game.Table[i // size][i % size][2] = 'white'
         game.Clicked_Buttons = []
     
     
